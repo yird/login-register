@@ -1,0 +1,22 @@
+body {
+  background-color:#f0f0f0;
+}
+ul{
+  margin-top:2em;
+  list-style:none;
+  text-align:center;
+}
+li {
+  margin:1em;
+}
+#status{
+  font-style:italic;
+  color:red;
+}
+#signupform{
+  text-align:center;
+
+}
+#regbtn {
+  text-decoration:none;
+}
