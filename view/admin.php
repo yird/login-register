@@ -1,9 +1,3 @@
-<?php
-if (empty($_SESSION)){
-  header('Location:../controller/index.php');
-}
-?>
-
 
 <html>
   <head>

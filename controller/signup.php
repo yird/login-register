@@ -13,46 +13,62 @@ if (isset($_POST['create'])){
 
   $userlen = strlen($username);
   $passlen = strlen($password);
+  $fnamelen = strlen($fname);
+  $lnamelen = strlen($lname);
+  $emaillen = strlen($email);
 
-  function checkUsername($checkuser){
-
-    $check = connect()->prepare("SELECT username FROM users WHERE username=:username");
-    $check->bindParam(':username',$checkuser);
-    $check->execute();
-
-    if ($check->rowCount() > 0){
+  function noSpaces($tocheck){
+    if ( !preg_match('/\s/',$tocheck) && !preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $tocheck)){
       return true;
-    }else{
-      return false;
-    }
+  }else{
+    return false;
   }
-  if (checkUsername($username) === false){
+  }
 
-    if ($userlen >= 4 && $passlen >= 6) {
-          if ($password === $password2){
-              $formcomplete = true;
-          } else {
-            $status = 'Passwords did not Match';
+
+
+  if (noSpaces($username)==true){
+    if ($userlen >= 4 && $userlen <= 15){
+      if (checkUsernameTaken($username) == false){
+        if (noSpaces($fname)==true && noSpaces($lname)==true){
+          if ($fnamelen > 2 && $fnamelen < 15){
+            if ($lnamelen > 2 && $lnamelen < 15){
+              if ($emaillen > 8){
+                if ($passlen > 6){
+                  if ($password === $password2){
+                    $formcomplete = true;
+                  }else{
+                    $status='Passwords did not match';
+                  }
+                }else {
+                  $status = 'Password must be atleast 6 characters';
+                }
+              }else{
+                $status = 'Invalid Email';
+              }
+            }else{
+              $status = 'Invalid Last Name';
             }
-      } elseif ($userlen < 4){
-        $status = 'Username must be atleast 4 characters';
-      }elseif ($passlen < 6){
-        $status = 'Password must be atleast 6 characters';
+          }else{
+            $status = 'Invalid First Name';
+          }
+        }else{
+          $status = 'Name can\'t have spaces or special characters($%&*>#)';
+        }
+      }else{
+        $status = 'Username is Taken';
       }
-  } else{
-    $status = 'Username is Taken';
+    } else {
+      $status = 'Username must be 4 - 15 characters';
+    }
+  }else {
+    $status = 'Username can\'t have spaces or special characters($%&*>#)';
   }
 
-  if (isset($formcomplete)){
-
-    $query = connect()->prepare("INSERT INTO users (username, password,email) VALUES (:username, :password, :email)");
-    $query->bindParam(':username', $username);
-    $query->bindParam(':password', $password);
-    $query->bindParam(':email', $email);
-
-    if($query->execute()){
-      header("Location: ../controller/index.php");
-    } else{
+  if (!empty($formcomplete) && $formcomplete === true){
+    if(registerUser($username,$password,$fname,$lname,$email)==true){
+    header("Location: ../controller/index.php");
+  }else{
       $status ='Database Error, Please try again later..';
     }
   }

@@ -25,8 +25,8 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-5 col-sm-10">
-            <input type="submit" name="login" class="btn btn-default" value="Sign in">
-            <a href="signup.php" class="btn btn-success">Register</a>
+            <a href="signup.php" class="btn btn-default">Register</a>
+            <input type="submit" name="login" class="btn btn-success" value="Sign in">
           </div>
 
         </div>
