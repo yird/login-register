@@ -56,7 +56,7 @@ if (isset($_POST['create'])){
           $status = 'Name can\'t have spaces or special characters($%&*>#)';
         }
       }else{
-        $status = 'Username is Taken';
+        $status = 'Username is Unavailable';
       }
     } else {
       $status = 'Username must be 4 - 15 characters';

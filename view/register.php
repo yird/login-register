@@ -10,11 +10,10 @@
   <div class="container">
   <form class="form-group" action="" method="post">
       <h2 style="text-align:center">Create an Account!</h2><br>
-      <?php if(isset($status)): ?>
-        <p class="alert alert-danger" style="text-align:center"><?="$status"?></p>
-      <?php endif; ?>
       <div class="col-md-6 col-md-offset-3">
-
+        <?php if(isset($status)): ?>
+          <p class="alert alert-danger" style="text-align:center"><?="$status"?></p>
+        <?php endif; ?>
       Username <input class="form-control" type="text" name="username" value="<?= isset($username) ? ($username) : ''?>">
       First Name <input class="form-control" type="text" name="fname"value="<?= isset($fname) ? ($fname) : ''?>">
       Last Name <input class="form-control" type="text" name="lname"value="<?= isset($lname) ? ($lname) : ''?>">
