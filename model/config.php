@@ -10,6 +10,7 @@ function connect(){
 }
 
 function checkValidLogin($username,$password){
+  $password = md5($password);
   $result = connect()->prepare("SELECT username,password FROM users WHERE username=:username AND password=:password");
   $result->bindParam('username',$username);
   $result->bindParam('password',$password);
@@ -37,6 +38,7 @@ function checkUsernameTaken($checkuser){
   }
 }
 function registerUser($username,$password,$fname,$lname,$email){
+    $password = md5($password);
     $query = connect()->prepare("INSERT INTO users (username, password,fname,lname,email) VALUES (:username, :password, :fname, :lname, :email)");
     $query->bindParam(':username', $username);
     $query->bindParam(':password', $password);
