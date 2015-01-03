@@ -10,8 +10,14 @@
   <body>
 
     <div class="container">
-      <h2>Hello <?= $_SESSION['username']?><br/>
-      You are now logged in!</h2>
+      <h2>Hello <?= $name ?><br/>
+      You are now logged in!</h2><br><br>
+      <h3>About Me</h3><br>
+
+      <p>
+        <?= $about ?>
+      </p>
+      <a href="AboutController.php">Edit About Me</a>
 
       <h3> <a href="../view/logout.php" class="btn btn-danger">Logout</a></h3>
     </div>

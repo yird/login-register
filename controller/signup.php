@@ -1,7 +1,8 @@
 <?php
+session_start();
 if (isset($_POST['create'])){
 
-  require '../model/config.php';
+  require_once '../model/config.php';
 
 
   $username = $_POST['username'];
@@ -11,30 +12,16 @@ if (isset($_POST['create'])){
   $lname = $_POST['lname'];
   $email = $_POST['email'];
 
-  $userlen = strlen($username);
-  $passlen = strlen($password);
-  $fnamelen = strlen($fname);
-  $lnamelen = strlen($lname);
-  $emaillen = strlen($email);
+  $config = new config();
 
-  function noSpaces($tocheck){
-    if ( !preg_match('/\s/',$tocheck) && !preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $tocheck)){
-      return true;
-  }else{
-    return false;
-  }
-  }
-
-
-
-  if (noSpaces($username)==true){
-    if ($userlen >= 4 && $userlen <= 15){
-      if (checkUsernameTaken($username) == false){
-        if (noSpaces($fname)==true && noSpaces($lname)==true){
-          if ($fnamelen > 2 && $fnamelen < 15){
-            if ($lnamelen > 2 && $lnamelen < 15){
-              if ($emaillen > 8){
-                if ($passlen > 6){
+  if (config::noSpaces($username)==true){
+    if (config::length($username) >= 4 && config::length($username) <= 15){
+      if ($config->checkUsernameTaken($username) == false){
+        if (config::noSpaces($fname)==true && config::noSpaces($lname)==true){
+          if (config::length($fname) > 2 && config::length($fname) < 15){
+            if (config::length($lname) > 2 && config::length($lname) < 15){
+              if (config::length($email) > 8){
+                if (config::length($password) > 6){
                   if ($password === $password2){
                     $formcomplete = true;
                   }else{
@@ -64,15 +51,15 @@ if (isset($_POST['create'])){
   }else {
     $status = 'Username can\'t have spaces or special characters($%&*>#)';
   }
-
   if (!empty($formcomplete) && $formcomplete === true){
-    if(registerUser($username,$password,$fname,$lname,$email)==true){
-    header("Location: ../controller/index.php");
+    if($config->registerUser($username,$password,$fname,$lname,$email)==true){
+    $_SESSION['username'] = $username;
+    header('Location:admincontroller');
   }else{
       $status ='Database Error, Please try again later..';
     }
   }
 }
 
-include '../view/register.php'
+include '../view/register.php';
 ?>

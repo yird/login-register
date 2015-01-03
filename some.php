@@ -1,0 +1,2 @@
+
+  <object bgcolor="#000000" data="http://www.twitch.tv/swflibs/TwitchPlayer.swf" height="378" id="clip_embed_player_flash" type="application/x-shockwave-flash" width="620"><param name="movie"  /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="allowFullScreen" value="true" /><param name="flashvars" value="channel=timothylol&auto_play=false&start_volume=25&videoId=a604461403&device_id=f88b7af52e5ad566" /></object><br />

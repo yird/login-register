@@ -22,7 +22,7 @@
       Confirm Password <input class="form-control" type="password" name="password2"><br>
       <div style="text-align:center">
       <input class="btn btn-success navbar-btn" type="submit" name="create" value="Create Account">
-      <a href="index.php" class="btn btn-default">Login</a>
+      <a href="../controller" class="btn btn-default">Login</a>
     </div>
   </form>
  </div>

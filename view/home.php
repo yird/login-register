@@ -14,7 +14,7 @@
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-4 control-label">Username</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" name="username" placeholder="Username"value="<?= isset($username) ? ($username) : ''?>">
+            <input type="text" autofocus class="form-control" name="username" placeholder="Username"value="<?= isset($username) ? ($username) : ''?>">
           </div>
         </div>
         <div class="form-group">
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-5 col-sm-10">
-            <a href="signup.php" class="btn btn-default">Register</a>
+            <a href="signup" class="btn btn-default">Register</a>
             <input type="submit" name="login" class="btn btn-success" value="Sign in">
           </div>
 
